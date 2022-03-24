@@ -117,7 +117,7 @@ if (!class_exists("Project_trans_Node")) {
               if (!is_null($args)) {
                 $argName = $args->getAttribute('name');
               }
-              $expr = new \Twig_Node_Expression_Name($argName, $n->getLine());
+              $expr = new \Twig_Node_Expression_Name($argName, $n->getTemplateLine());
             }
             $placeholder = sprintf('%s%s', $argPrefix, $argName);
             $text .= $placeholder;
@@ -133,7 +133,7 @@ if (!class_exists("Project_trans_Node")) {
         $text = $body->getAttribute('data');
       }
 
-      return array(new \Twig_Node(array(new \Twig_Node_Expression_Constant(trim($text), $body->getLine()))), $tokens);
+      return array(new \Twig_Node(array(new \Twig_Node_Expression_Constant(trim($text), $body->getTemplateLine()))), $tokens);
     }
 
   }
@@ -149,7 +149,7 @@ if (!class_exists("Project_trans_TokenParser")) {
      * {@inheritdoc}
      */
     public function parse(Twig_Token $token) {
-      $lineno = $token->getLine();
+      $lineno = $token->getTemplateLine();
       $stream = $this->parser->getStream();
       $body = NULL;
       $options = NULL;
